@@ -9,3 +9,10 @@ npm install @babel/core @babel/plugin-proposal-class-properties @babel/preset-en
 npm install serve -D
 npm install redux react-redux redux-thunk
 ```
+
+workbox lib installer - commands are:
+
+```
+npm install workbox-webpack-plugin copy-webpack-plugin -D
+npm install workbox-window workbox-core workbox-precaching
+```

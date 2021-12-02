@@ -6,7 +6,8 @@ export const menu = [
     path: "/",
     exact: true,
     type: "single",
-    lazyComponent: () => <Redirect to={"/film"}/>
+    lazyComponent: React.lazy(() => import('../pages/film'))
+    // lazyComponent: () => <Redirect to={"/film"}/>
   },
   {
     path: "/film",

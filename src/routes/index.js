@@ -44,16 +44,16 @@ const RouteWithSubRoutes = ({ component: Component, ...rest }) => {
           {...rest}
           render={(props) => {
             console.log("DEBUG_AUTH", rest);
-            if (rest.authed) {
+            // if (rest.authed) {
               if (rest.routeType === "single") {
                 return <Component {...props}/>
               }
               if (rest.routeType === "nested") {
                 return RouteWithNestedRoutes(rest);
               }
-            } else {
-              return <Redirect to="/login" />;
-            }
+            // } else {
+            //   return <Redirect to="/login" />;
+            // }
           }}
         />
       </React.Suspense>
