@@ -1,0 +1,42 @@
+{
+  "name": "react-pwa-boilerplate",
+  "version": "1.0.0",
+  "description": "First init project and install - commands are:",
+  "main": "index.js",
+  "scripts": {
+    "webpack-dev-server": "webpack-dev-server",
+    "dev": "webpack serve --mode=development",
+    "prod": "NODE_ENV=production webpack --mode=production",
+    "serve": "npm run prod && serve -s dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/letenote/react-pwa-boilerplate.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/letenote/react-pwa-boilerplate/issues"
+  },
+  "homepage": "https://github.com/letenote/react-pwa-boilerplate#readme",
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.16.0",
+    "@babel/plugin-proposal-class-properties": "^7.16.0",
+    "@babel/preset-env": "^7.16.4",
+    "@babel/preset-react": "^7.16.0",
+    "babel-loader": "^8.2.3",
+    "css-loader": "^6.5.1",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.5.0",
+    "serve": "^13.0.2",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.64.4",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.6.0"
+  }
+}
