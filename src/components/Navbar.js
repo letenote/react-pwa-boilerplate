@@ -9,18 +9,15 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   return (
-    <nav style={{ marginBottom: 20 }}>
-      {/* <h1 className="logo-wrap" onClick={() => history.push("/")}>
-        City News
-      </h1> */}
-      <div className="logo-wrap logo" onClick={() => history.push("/")}>
+    <nav style={{ marginBottom: 20 }} className={'nav-wrap'}>
+      <div className="logo" onClick={() => history.push("/")}>
         <NetflixLogo/>
       </div>
       <div className="nav-menu">
-        <NavLink exact activeClassName={"active"} to="/blogs">
-          Blogs
+        <NavLink exact activeClassName={"active"} to="/film">
+          Film
         </NavLink>
-        <NavLink activeClassName={"active"} to="/blogs/create">
+        <NavLink activeClassName={"active"} to="/film/create">
           Create
         </NavLink>
         <button

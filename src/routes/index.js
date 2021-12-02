@@ -38,6 +38,7 @@ const RouteWithSubRoutes = ({ component: Component, ...rest }) => {
   return (
     <div>
       <Navbar />
+      <div style={{ padding: 20 }}>
       <React.Suspense fallback={"loading..."}>
         <Route
           {...rest}
@@ -45,7 +46,7 @@ const RouteWithSubRoutes = ({ component: Component, ...rest }) => {
             console.log("DEBUG_AUTH", rest);
             if (rest.authed) {
               if (rest.routeType === "single") {
-                return <Component {...props} />;
+                return <Component {...props}/>
               }
               if (rest.routeType === "nested") {
                 return RouteWithNestedRoutes(rest);
@@ -56,6 +57,7 @@ const RouteWithSubRoutes = ({ component: Component, ...rest }) => {
           }}
         />
       </React.Suspense>
+      </div>
     </div>
   );
 };

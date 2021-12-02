@@ -6,31 +6,31 @@ export const menu = [
     path: "/",
     exact: true,
     type: "single",
-    lazyComponent: () => <Redirect to={"/blogs"}/>
+    lazyComponent: () => <Redirect to={"/film"}/>
   },
   {
-    path: "/blogs",
-    initial: "blogs",
+    path: "/film",
+    initial: "film",
     type: "nested",
     exact: false,
     nested: [
       {
-        path: "/blogs",
+        path: "/film",
         exact: true,
         type: "single",
-        lazyComponent: React.lazy(() => import('../pages/blog'))
+        lazyComponent: React.lazy(() => import('../pages/film'))
       },
       {
-        path: "/blogs/create",
+        path: "/film/create",
         exact: true,
         type: "single",
-        lazyComponent: React.lazy(() => import('../pages/blog'))
+        lazyComponent: React.lazy(() => import('../pages/film'))
       },
       {
-        path: "/blogs/update/:id",
+        path: "/film/update/:id",
         exact: true,
         type: "single",
-        lazyComponent: React.lazy(() => import('../pages/blog'))
+        lazyComponent: React.lazy(() => import('../pages/film'))
       }
     ]
   }
