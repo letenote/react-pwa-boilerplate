@@ -1,5 +1,28 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const { InjectManifest } = require( 'workbox-webpack-plugin' );
+const CopyPlugin = require( 'copy-webpack-plugin' );
+
+const webpackPlugins = [
+  new HtmlWebpackPlugin({
+    template: path.resolve( __dirname, 'public/index.html' ),
+    filename: 'index.html'
+  }),
+  new CopyPlugin({
+    patterns: [
+      { from: path.resolve(__dirname, "./", "public/assets/images/favicon.ico"), to: 'assets/images/' },
+      { from: path.resolve(__dirname, "./", "public/manifest.json"), to: '' },
+      { from: path.resolve(__dirname, "./", "public/assets/images/logo512.png"), to: 'assets/images/' },
+    ],
+  })
+]
+
+if ( 'production' === process.env.NODE_ENV ) {
+  webpackPlugins.push( new InjectManifest( {
+    swSrc: './src/src-sw.js',
+    swDest: 'sw.js',
+  } ) );
+}
 
 module.exports = {
   context: __dirname,
@@ -28,10 +51,5 @@ module.exports = {
 			}
 		]
 	},
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: path.resolve( __dirname, 'public/index.html' ),
-      filename: 'index.html'
-    })
-  ],
+  plugins: webpackPlugins
 };
