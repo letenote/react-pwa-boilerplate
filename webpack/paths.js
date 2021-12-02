@@ -15,6 +15,7 @@ module.exports = {
     "../",
     "public/assets/images/logo512.png"
   ),
-  // assetManifest: path.resolve(__dirname, "../", "public/asset-manifest.json"),
+  assetManifest: path.resolve(__dirname, "../", "public/asset-manifest.json"),
+  robotTxt: path.resolve(__dirname, "../", "public/robot.txt"),
   manifest: path.resolve(__dirname, "../", "public/manifest.json")
 };

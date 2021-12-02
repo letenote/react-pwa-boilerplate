@@ -29,10 +29,12 @@
     "react-router-dom": "^5.3.0",
     "redux": "^4.1.2",
     "redux-thunk": "^2.4.1",
+    "sass": "^1.44.0",
     "webpack-merge": "^5.8.0",
     "workbox-core": "^6.4.1",
     "workbox-precaching": "^6.4.1",
-    "workbox-window": "^6.4.1"
+    "workbox-window": "^6.4.1",
+    "zlib": "^1.0.5"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
@@ -41,18 +43,29 @@
     "@babel/preset-react": "^7.16.0",
     "@svgr/cli": "^6.1.0",
     "babel-loader": "^8.2.3",
+    "clean-webpack-plugin": "^4.0.0",
+    "compression-webpack-plugin": "^9.0.1",
     "connect-history-api-fallback": "^1.6.0",
     "copy-webpack-plugin": "^9.0.0",
     "css-loader": "^6.5.1",
+    "css-minimizer-webpack-plugin": "^3.2.0",
+    "cssnano-preset-simple": "^3.0.0",
+    "dart-sass": "^1.25.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
     "koa-connect": "^2.1.0",
+    "media-query-splitting-plugin": "^2.0.10",
+    "mini-css-extract-plugin": "^2.4.5",
+    "optimize-css-assets-webpack-plugin": "^6.0.1",
+    "sass-loader": "^12.3.0",
     "script-ext-html-webpack-plugin": "^2.1.5",
     "serve": "^13.0.2",
     "style-loader": "^3.3.1",
+    "terser-webpack-plugin": "^5.2.5",
     "webpack": "^5.64.4",
     "webpack-cli": "^4.9.1",
     "webpack-dev-server": "^4.6.0",
+    "webpack-manifest-plugin": "^4.0.2",
     "workbox-webpack-plugin": "^6.1.5"
   }
 }

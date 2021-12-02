@@ -1,6 +1,5 @@
 const webpack = require("webpack");
 const commonPaths = require("./paths");
-// const path = require("path");
 
 module.exports = {
   mode: "development",
@@ -27,14 +26,11 @@ module.exports = {
 		]
   },
   devServer: {
-    // contentBase: commonPaths.outputPath,
-    // static: {
-    //   directory: path.join(__dirname, 'public'),
-    // },
     compress: true,
     historyApiFallback: true,
-    // hot: true,
     port: 9999,
   },
-  plugins: [new webpack.HotModuleReplacementPlugin()],
+  plugins: [
+    new webpack.HotModuleReplacementPlugin()
+  ]
 };
