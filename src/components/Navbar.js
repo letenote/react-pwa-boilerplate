@@ -3,15 +3,19 @@ import { NavLink } from "react-router-dom";
 import { useHistory } from "react-router";
 import { useDispatch } from "react-redux";
 import { userLogout } from "../store/redux/auth/auth.action";
+import NetflixLogo from './icons/NetflixLogo';
 
 const Navbar = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   return (
     <nav style={{ marginBottom: 20 }}>
-      <h1 className="logo-text" onClick={() => history.push("/")}>
+      {/* <h1 className="logo-wrap" onClick={() => history.push("/")}>
         City News
-      </h1>
+      </h1> */}
+      <div className="logo-wrap logo" onClick={() => history.push("/")}>
+        <NetflixLogo/>
+      </div>
       <div className="nav-menu">
         <NavLink exact activeClassName={"active"} to="/blogs">
           Blogs

@@ -7,7 +7,8 @@
     "webpack-dev-server": "webpack-dev-server",
     "dev": "webpack serve --mode=development",
     "prod": "NODE_ENV=production webpack --mode=production",
-    "serve": "npm run prod && serve -s dist"
+    "serve": "npm run prod && serve -s dist",
+    "svg": "svgr -d src/components/icons src/components/icons/svgs"
   },
   "repository": {
     "type": "git",
@@ -33,6 +34,7 @@
     "@babel/plugin-proposal-class-properties": "^7.16.0",
     "@babel/preset-env": "^7.16.4",
     "@babel/preset-react": "^7.16.0",
+    "@svgr/cli": "^6.1.0",
     "babel-loader": "^8.2.3",
     "css-loader": "^6.5.1",
     "file-loader": "^6.2.0",

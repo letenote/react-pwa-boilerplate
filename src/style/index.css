@@ -33,10 +33,6 @@ nav {
   border-radius: 50%;
 }
 
-.logo-text {
-  cursor: pointer;
-}
-
 .btn {
   color: #ffffff;
   border: none;
@@ -132,3 +128,39 @@ nav a.active {
   margin-top: 10px;
   margin: 5px;
 }
+
+.logo-wrap {
+  padding: 15px 0;
+}
+
+.logo {
+  width: 120px;
+  height: 40px;
+  margin-right: 10px;
+  transition: margin 0.125s ease;
+}
+
+@media only screen and (max-width: 600px) {
+  .logo {
+    width: 150px;
+  }
+}
+
+.logo svg {
+  transform: scale(0.5);
+  transform-origin: 0 0;
+}
+
+.logo svg path {
+  fill: #e50914;
+  transition: fill 0.125s ease;
+}
+
+.logo:hover {
+  cursor: pointer;
+  /* margin-top: 2px; */
+}
+
+/* .logo:hover svg path {
+  fill: #ffffff !important;
+} */
