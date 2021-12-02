@@ -15,4 +15,8 @@ workbox lib installer - commands are:
 ```
 npm install workbox-webpack-plugin copy-webpack-plugin -D
 npm install workbox-window workbox-core workbox-precaching
+
+
+npm install webpack-merge babel-polyfill
+npm install html-webpack-plugin script-ext-html-webpack-plugin -D
 ```
