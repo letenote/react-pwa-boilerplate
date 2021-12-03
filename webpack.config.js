@@ -62,6 +62,6 @@ const envs = {
   production: "prod",
 };
 const env = envs[process.env.NODE_ENV || "development"];
-console.log("WEBPACK_CONFIG:::", process.env.NODE_ENV, env)
+console.warn(`::: WEBPACK_BUILDING.. ==> ${process.env.NODE_ENV} Mode On :::`)
 const envConfig = require(`./webpack/webpack.${env}.js`);
 module.exports = merge(common, envConfig);

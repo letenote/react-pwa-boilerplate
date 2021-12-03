@@ -17,5 +17,6 @@ module.exports = {
   ),
   assetManifest: path.resolve(__dirname, "../", "public/asset-manifest.json"),
   robotTxt: path.resolve(__dirname, "../", "public/robot.txt"),
+  _redirects: path.resolve(__dirname, "../", "public/_redirects"),
   manifest: path.resolve(__dirname, "../", "public/manifest.json")
 };

@@ -1,3 +1,4 @@
+const { InjectManifest } = require( 'workbox-webpack-plugin' );
 const commonPaths = require("./paths");
 const TerserPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -7,7 +8,55 @@ const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const CompressionPlugin = require("compression-webpack-plugin");
 const zlib = require("zlib");
-const { InjectManifest } = require( 'workbox-webpack-plugin' );
+
+const webpack_prod_plugins = [
+  new CleanWebpackPlugin(),
+  new MiniCssExtractPlugin({
+    filename: `${commonPaths.cssFolder}/[name].css`,
+    chunkFilename: `${commonPaths.cssFolder}/[name].css`,
+  }),
+  new WebpackManifestPlugin({
+    // Not to confuse with manifest.json
+    fileName: commonPaths.assetManifest, 
+  }),
+  new CopyWebpackPlugin({
+    patterns: [
+      { from: commonPaths.manifest, to: commonPaths.outputPath },
+      { from: commonPaths.robotTxt, to: commonPaths.outputPath },
+      { from: commonPaths._redirects, to: commonPaths.outputPath }
+    ]
+  }),
+  // new CompressionPlugin({
+  //   filename: "[path][base].gz",
+  //   algorithm: "gzip",
+  //   test: /\.js$|\.css$|\.html$/,
+  //   threshold: 10240,
+  //   minRatio: 0.8,
+  // }),
+  // new CompressionPlugin({
+  //   filename: "[path][base].br",
+  //   algorithm: "brotliCompress",
+  //   test: /\.(js|css|html|svg)$/,
+  //   compressionOptions: {
+  //     params: {
+  //       [zlib.constants.BROTLI_PARAM_QUALITY]: 11,
+  //     },
+  //   },
+  //   threshold: 10240,
+  //   minRatio: 0.8,
+  // }),
+]
+
+if( '6' === process.env.WORKBOX_VERSION ) {
+  webpack_prod_plugins.push( new InjectManifest( {
+    // Workbox v.6 config <<
+    swSrc: './src/workbox/v6/src-sw.js',
+    swDest: 'sw.js',
+    // exclude for handle _redirects file if deploy in netlify
+    // https://answers.netlify.com/t/workbox-error-precachecontroller-mjs-194-uncaught-in-promise-bad-precaching-response-redirects-wb-revision-404/8865
+    exclude: [/_redirects/],
+  }));
+}
 
 module.exports = {
   mode: "production",
@@ -84,16 +133,17 @@ module.exports = {
     // Keep the runtime chunk seperated to enable long term caching
     // https://twitter.com/wSokra/status/969679223278505985
     runtimeChunk: {
-      name: "manifest",
+      name: "NET",
     },
   },
   // :: start options module
   module: {
     rules: [
       {
-				test: /\.js$/,
-				use: 'babel-loader',
-			},
+        test: /\.(js|jsx)$/,
+        loader: 'babel-loader',
+        exclude: /(node_modules)/,
+      },
       {
         test: /.s?css$/,
         use: [
@@ -118,47 +168,7 @@ module.exports = {
     ]
   },
   // :: start options plugins
-  plugins: [
-    new CleanWebpackPlugin(),
-    new MiniCssExtractPlugin({
-      filename: `${commonPaths.cssFolder}/[name].css`,
-      chunkFilename: `${commonPaths.cssFolder}/[name].css`,
-    }),
-    new WebpackManifestPlugin({
-      // Not to confuse with manifest.json
-      fileName: commonPaths.assetManifest, 
-    }),
-    new InjectManifest( {
-      // Workbox config <<
-      swSrc: './src/src-sw.js',
-      swDest: 'sw.js',
-    }),
-    new CopyWebpackPlugin({
-      patterns: [
-        { from: commonPaths.manifest, to: commonPaths.outputPath },
-        { from: commonPaths.robotTxt, to: commonPaths.outputPath },
-      ]
-    }),
-    new CompressionPlugin({
-      filename: "[path][base].gz",
-      algorithm: "gzip",
-      test: /\.js$|\.css$|\.html$/,
-      threshold: 10240,
-      minRatio: 0.8,
-    }),
-    new CompressionPlugin({
-      filename: "[path][base].br",
-      algorithm: "brotliCompress",
-      test: /\.(js|css|html|svg)$/,
-      compressionOptions: {
-        params: {
-          [zlib.constants.BROTLI_PARAM_QUALITY]: 11,
-        },
-      },
-      threshold: 10240,
-      minRatio: 0.8,
-    }),
-  ],
+  plugins: webpack_prod_plugins,
   // :: start options devtools
   devtool: false,
   // :: start options performance

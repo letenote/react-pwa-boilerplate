@@ -29,6 +29,8 @@ module.exports = {
     new webpack.ProgressPlugin(),
     new HtmlWebpackPlugin({
       template: commonPaths.templatePath,
+      hash: true,
+      inject: true,
     }),
     new ScriptExtHtmlWebpackPlugin({
       defaultAttribute: "async",
