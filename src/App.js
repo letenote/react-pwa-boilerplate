@@ -1,6 +1,15 @@
 import React from 'react';
-import Routes from './routes';
-
-const App = () => <Routes/>;
+import { Provider } from "react-redux";
+const Routes = React.lazy(() => import("./routes"));
+import store from './store'
+const App = () => {
+  return (
+    <React.Suspense fallback={<div>Loading..</div>}>
+      <Provider store={store}>
+        <Routes />
+      </Provider>
+    </React.Suspense>
+  )
+}
 
 export default App;

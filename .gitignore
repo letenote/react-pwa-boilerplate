@@ -8,6 +8,7 @@ node_modules/
 dist/
 coverage/
 __snapshots__/
+.env
 
 # Compiled Java class files
 *.class

@@ -14,24 +14,39 @@ const Navbar = () => {
         <NetflixLogo/>
       </div>
       <div className="nav-menu">
+        <NavLink exact activeClassName={"active"} to="/">
+          Home
+        </NavLink>
         <NavLink exact activeClassName={"active"} to="/film">
           Film
         </NavLink>
-        <NavLink activeClassName={"active"} to="/film/create">
-          Create
-        </NavLink>
         <button
           type="button"
-          className="btn btn-warning"
+          className="btn btn-danger"
           style={{
             marginLeft: 15,
             cursor: "pointer",
           }}
           onClick={() => {
-            userLogout(dispatch).then(() => history.push("/login"));
+            history.push("/login")
+            // userLogout(dispatch).then(() => history.push("/login"));
           }}
         >
-          Logout
+          Login
+        </button>
+        <button
+          type="button"
+          className="btn btn-danger"
+          style={{
+            marginLeft: 15,
+            cursor: "pointer",
+          }}
+          onClick={() => {
+            history.push("/user/register")
+            // userLogout(dispatch).then(() => history.push("/user/register"));
+          }}
+        >
+          Register
         </button>
       </div>
     </nav>

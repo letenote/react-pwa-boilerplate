@@ -5,9 +5,12 @@
   "main": "index.js",
   "scripts": {
     "webpack-dev-server": "webpack-dev-server",
-    "dev": "webpack serve --mode=development",
-    "prod": "NODE_ENV=production webpack --mode=production",
-    "serve": "rm -rf dist && npm run prod && serve -s -p 6969 dist",
+    "build-sw": "node ./src/workbox/v5/sw-build.js",
+    "dev": "NODE_ENV=development webpack serve --mode=development",
+    "prod-v5": "rm -rf dist && GENERATE_SOURCEMAP=false NODE_ENV=production WORKBOX_VERSION=5 webpack --mode=production && npm run build-sw",
+    "prod-v6": "rm -rf dist && GENERATE_SOURCEMAP=false NODE_ENV=production WORKBOX_VERSION=6 webpack --mode=production",
+    "serve-v5": "rm -rf dist && npm run prod-v5 && serve -s -p 6969 dist",
+    "serve-v6": "rm -rf dist && npm run prod-v6 && serve -s -p 6969 dist",
     "svg": "svgr -d src/components/icons src/components/icons/svgs"
   },
   "repository": {
@@ -20,17 +23,21 @@
   "bugs": {
     "url": "https://github.com/letenote/react-pwa-boilerplate/issues"
   },
-  "homepage": "https://github.com/letenote/react-pwa-boilerplate#readme",
+  "homepage": "/",
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.6",
     "react-router-dom": "^5.3.0",
     "redux": "^4.1.2",
     "redux-thunk": "^2.4.1",
+    "sass": "^1.44.0",
+    "webpack-merge": "^5.8.0",
     "workbox-core": "^6.4.1",
     "workbox-precaching": "^6.4.1",
-    "workbox-window": "^6.4.1"
+    "workbox-window": "^6.4.1",
+    "zlib": "^1.0.5"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
@@ -39,15 +46,32 @@
     "@babel/preset-react": "^7.16.0",
     "@svgr/cli": "^6.1.0",
     "babel-loader": "^8.2.3",
+    "clean-webpack-plugin": "^4.0.0",
+    "compression-webpack-plugin": "^9.0.1",
+    "connect-history-api-fallback": "^1.6.0",
     "copy-webpack-plugin": "^9.0.0",
+    "cross-env": "^7.0.3",
     "css-loader": "^6.5.1",
+    "css-minimizer-webpack-plugin": "^3.2.0",
+    "cssnano-preset-simple": "^3.0.0",
+    "dart-sass": "^1.25.0",
+    "dotenv": "^10.0.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
+    "koa-connect": "^2.1.0",
+    "media-query-splitting-plugin": "^2.0.10",
+    "mini-css-extract-plugin": "^2.4.5",
+    "optimize-css-assets-webpack-plugin": "^6.0.1",
+    "sass-loader": "^12.3.0",
+    "script-ext-html-webpack-plugin": "^2.1.5",
     "serve": "^13.0.2",
     "style-loader": "^3.3.1",
+    "terser-webpack-plugin": "^5.2.5",
     "webpack": "^5.64.4",
     "webpack-cli": "^4.9.1",
     "webpack-dev-server": "^4.6.0",
+    "webpack-manifest-plugin": "^4.0.2",
+    "workbox-build": "^6.0.2",
     "workbox-webpack-plugin": "^6.1.5"
   }
 }
